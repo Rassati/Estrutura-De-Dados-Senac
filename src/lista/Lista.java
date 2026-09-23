@@ -44,16 +44,28 @@ public class Lista<T>{
     }
 
     public boolean remover(int id){
-        pesquisar(id);
         No<T> remove = inicio;
         No<T> auxRemove = null;
         Carro c;
         while(remove != null ){
             c=(Carro)remove.getItem();
            if (id == c.getId()){
-
+                break;
            }
+           remove = remove.getProx();
+
         }
-        return false;
+        // verificacao de onde parou na lista
+        if(remove == null){
+            return false;
+        }
+        // remover o primeiro nó
+        if(remove == inicio) {
+            inicio = remove.getProx();
+            remove.setProx(null);
+
+        }
+
+        return true;
     }
 }

@@ -13,14 +13,22 @@ public class UsaLista {
        lista.inserir(new Carro("VW","Virtus",30000.54,5));
        lista.inserir(new Carro("BYD","Song",25000.32,21));
        
-       // lista.exibir();
+       lista.exibir();
        
-       Carro c=lista.pesquisar(11);
-       if(c==null){
-           System.out.println("Não tem!");
-       }else{
-           System.out.println(c);
-       }
+//       Carro c=lista.pesquisar(11);
+//       if(c==null){
+//           System.out.println("Nï¿½o tem!");
+//       }else{
+//           System.out.println(c);
+//       }
+
+    if(lista.remover(1)) {
+        System.out.println("Removeu!");
+    } else {
+        System.out.println("NÃ£o Removeu");
+    }
+    lista.exibir();
+
     }
     
 }
