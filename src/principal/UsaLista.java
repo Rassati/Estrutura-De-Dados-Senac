@@ -22,7 +22,7 @@ public class UsaLista {
 //           System.out.println(c);
 //       }
 
-    if(lista.remover(1)) {
+    if(lista.remover(11)) {
         System.out.println("Removeu!");
     } else {
         System.out.println("Não Removeu");
