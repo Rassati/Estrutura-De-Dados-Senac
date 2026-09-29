@@ -64,7 +64,6 @@ public class Lista<T> {
             remove = remove.getProx();
         }
 
-        // verificacao de onde parou na lista
         if (remove == null) {
             return false;
         }
@@ -76,20 +75,20 @@ public class Lista<T> {
             aux = null;
         }
 
-        // remove o primeiro nó
+        // remove o primeiro no
         else if (remove == inicio) {
             inicio = remove.getProx();
             remove.setProx(null);
         }
 
-        // remove o ultimo nó
+        // remove o ultimo no
         else if (remove == fim) {
             fim = auxRemove;
             aux = auxRemove;
             auxRemove.setProx(null);
         }
 
-        // remove um nó do meio
+        // remove um no do meio
         else {
             auxRemove.setProx(remove.getProx());
             remove.setProx(null);
