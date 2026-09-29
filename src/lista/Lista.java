@@ -1,78 +1,49 @@
-package lista;
+public boolean remover(int id) {
+    No<T> remove = inicio;
+    No<T> auxRemove = null;
+    Carro c;
 
-import modelo.Carro;
+    while (remove != null) {
+        c = (Carro) remove.getItem();
 
-public class Lista<T> {
+        if (id == c.getId()) {
+            break;
+        }
 
-    private No<T> inicio, fim, aux;
-
-    public boolean vazia() {
-        return inicio == null;
+        auxRemove = remove;
+        remove = remove.getProx();
     }
 
-    public void inserir(T item) {
-        if (vazia()) {
-            inicio = new No(item);
-            aux = inicio;
-            fim = inicio;
-        } else {
-            fim = new No(item);
-            aux.setProx(fim);
-            aux = fim;
-        }
+    // verificacao de onde parou na lista
+    if (remove == null) {
+        return false;
     }
 
-    public void exibir() {
-        No<T> ref = inicio;
-        while (ref != null) {
-            System.out.println(ref.getItem());
-            ref = ref.getProx();
-        }
+    // remove o unico elemento da lista
+    if (remove == inicio && remove == fim) {
+        inicio = null;
+        fim = null;
+        aux = null;
     }
 
-    public Carro pesquisar(int id) {
-        No<T> ref = inicio;
-        Carro c;
-        while (ref != null) {
-            c = (Carro) ref.getItem();//Cast
-            if (id == c.getId()) {
-                return c;
-            }
-            ref = ref.getProx();
-        }
-        return null;
+    // remover o primeiro no
+    else if (remove == inicio) {
+        inicio = remove.getProx();
+        remove.setProx(null);
     }
 
-    public boolean remover(int id) {
-        No<T> remove = inicio;
-        No<T> auxRemove = null;
-        Carro c;
-        while (remove != null) {
-            c = (Carro) remove.getItem();
-            if (id == c.getId()) {
-                break;
-            }
-            auxRemove = remove;
-            remove = remove.getProx();
-        }
-        // verificacao de onde parou na lista
-        if (remove == null) {
-            return false;
-        }
-        // remover o primeiro nó
-        if (remove == inicio) {
-            inicio = remove.getProx();
-            remove.setProx(null);
-        } else if (remove == fim) { // remove o ultimo nó
-            fim = auxRemove;
-            aux = auxRemove;
-            auxRemove.setProx(null);
-        }
-            auxRemove.setProx(remove.getProx());
-            remove.setProx(null);
-
-
-
-        return true;
+    // remove o ultimo no
+    else if (remove == fim) {
+        fim = auxRemove;
+        aux = auxRemove;
+        auxRemove.setProx(null);
     }
+
+    // remove um no do meio
+    else {
+        auxRemove.setProx(remove.getProx());
+        remove.setProx(null);
+    }
+
+    return true;
 }
